@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>what's lonnen doing?</title>
+
+        <style>
+         body {
+             background-color: black;
+             color: white;
+         }
+         h1 {
+             text-align: center;
+             font-size: 5vw;
+             margin: 0;
+         }
+         /* .grid:after {
+            content: "";
+            display: table;
+            clear: both;
+            }
+            .col {
+            float: left;
+            width: 49%;
+            padding-right: 20px;
+            }
+
+            .col:last-of-type {
+            padding-right: 0;
+            } */
+         .col {
+             width: 95%;
+             font-size: 4vw;
+             margin: 0 auto;
+             padding: 0 0.5vw;
+         }
+
+         .grid:last-of-type .col {
+             border: 3px solid #700;
+         }
+         @media only screen and (min-width: 700px) {
+             h1 {
+                 font-size: 4vw;
+             }
+             .col {
+                 width: 80%;
+                 font-size: 2vw;
+             }
+         }
+         @media only screen and (min-width: 1024px) {
+             .col {
+                 width: 60%;
+                 font-size: 1vw;
+             }
+         }
+        </style>
+    </head>
+    <body>
+        <h1>What's lonnen doing?</h1>
+
+        {% for day, img_url, text in items %}
+        <div class="grid">
+            <!-- <div class="col">
+                 {% if img_url %}
+                 <img src="{{ img_url }}">
+                 {% else %}
+                 <p>FILLER<br>FILLER<br>FILLER</p>
+                 {% endif %}
+                 </div> -->
+            <div class="col text">
+                <p>
+                    Day {{ day }}: {{ text }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>
