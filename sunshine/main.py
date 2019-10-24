@@ -1,5 +1,4 @@
 import os
-import string
 from datetime import date
 
 from flask import (
@@ -11,8 +10,9 @@ from flask import (
 )
 
 
-app = Flask(__name__)
 from sunshine import settings
+
+app = Flask(__name__)
 app.config.from_object(settings)
 
 
@@ -148,16 +148,13 @@ def index_view():
     )
 
 
-VALID_CHARS = string.letters + string.digits + '._'
-
-
 @app.route('/static/imgs/<img>')
 def static_view(img):
-    img = ''.join([c for c in img if c in VALID_CHARS])
+    img = ''.join([c for c in img if c.isalnum() or c in "._"])
 
     path = os.path.join(app.root_path, 'static', 'imgs')
     if not os.path.exists(os.path.join(path, img)):
-        print os.path.join(path, img)
+        print(os.path.join(path, img))
         abort(404)
 
     return send_from_directory(path, img)
